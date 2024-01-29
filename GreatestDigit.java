@@ -6,6 +6,10 @@ public class GreatestDigit {
         System.out.println("Enter the number: ");
         try (Scanner sc = new Scanner(System.in)) {
             int num = sc.nextInt();
+            if(num > 999 || num < 0) {
+                throw new ArithmeticException("Number should be in 0-999 range.");
+                
+            }
             int largest = 0;
             while(num > 0) {
                 int digit = num % 10;
@@ -17,6 +21,9 @@ public class GreatestDigit {
             }
 
             System.out.println("Largest digit is: " + largest);
+        }
+        catch (Exception e) {
+            System.out.println(e);
         }
 
     }
