@@ -13,11 +13,11 @@ class Main {
   
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the radius of circle:");
+        System.out.println("Enter the radius of circle :");
         int r = sc.nextInt();
 
         float area = Math.round(Circle.calArea(r) * 100.0f) / 100.0f;
 
-        System.out.println("The area of circle is " + area);
+        System.out.println("The area of circle is " + area+".");
     }
 }
