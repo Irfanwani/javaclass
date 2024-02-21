@@ -2,10 +2,30 @@ import java.util.*;
 
 class Main
 {
+    static String rep(char x, int num) {
+        String res = "";
+        for(int i = 0; i < num; i++) {
+            res += x;
+        }
+
+        return res;
+    }
 
     static void printpattern(int n, int i , boolean isdivide) {
-        String s = "S".repeat(isdivide ? i / 2 : 2*i);
-        System.out.println("C".repeat(n/2 -i) + s + "C".repeat(n/2 -i));
+        int nums = isdivide ? 2* (n - i - 1) : 2*i;
+        String s = rep('S', nums);
+        String cork = isdivide ? rep('K', (n - nums) / 2) : rep('C', n/2 -i);
+        System.out.println(cork + s + cork);
+    }
+
+    static void check(int n, int i, boolean isdivide) {
+        while((!isdivide && n % (2*i) != 0) || (isdivide && n % (2 * (n - i - 1)) != 0)) {
+            if(isdivide) i--;
+            else i++;
+        }
+
+        printpattern(n, i, isdivide);
+
     }
     public static void main(String args[])
     {
@@ -13,31 +33,18 @@ class Main
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
-        System.out.println("C".repeat(n));
+        System.out.println(rep('C', n));
         int i = 1;
 
-        while(i < n -1) {
-
+        while(i < n-1) {
         if(2*i <= n) {
-            if(n % (2*i) == 0) {
-                printpattern(n, i, false);
-            }else {
-                printpattern(n, i+1, false);
-                continue;
-            };
+            check(n, i, false);
         }else {
-            if(n % (i/2) == 0) {
-                printpattern(n, i, true);
-            }else {
-                printpattern(n, i-1, true);
-                continue;
-            }
+            check(n, i, true);
         }
-
     i++;
-
         }
-        System.out.println("K".repeat(n));
+        System.out.println(rep('K', n));
 
     }
 }
