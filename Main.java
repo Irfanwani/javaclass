@@ -1,15 +1,20 @@
-// Basics + Command Line Arguments
-public class Main {
-    static void addnum(int arr[]) {
-        arr[0] = 10;
-    }
-
-    static void display(int arr[]) {
-        System.out.println(arr[0]);
-    }
-    public static void main(String[] args) {
-        int arr[] = {23};
-        addnum(arr);
-        display(arr);
-    }
+class A {    
+    int a = 2;    
+     int getA() {        
+             return a;    
+      }
 }
+
+class B {    
+         int b = 5;    
+         int getB() {        
+              return b;    
+          }
+  }
+
+class Main {    
+    public static void main(String args[]) {        
+                A obj = new B();        
+               System.out.println(obj.getB()+1);    
+                 }
+        }
