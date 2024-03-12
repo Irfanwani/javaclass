@@ -9,9 +9,9 @@ public class Main {
         System.out.println("2. StageEvent");
 
         int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline character
 
         if (choice == 1) {
+             scanner.nextLine(); 
             System.out.println("Enter the details in CSV format");
             String input = scanner.nextLine();
             String[] parts = input.split(",");
@@ -31,6 +31,7 @@ public class Main {
             System.out.println("Organiser Name: " + exhibition.getOrganiser());
             System.out.println("Total Cost: " + exhibition.calculateAmount());
         } else if (choice == 2) {
+             scanner.nextLine(); 
             System.out.println("Enter the details in CSV format");
             String input = scanner.nextLine();
             String[] parts = input.split(",");
