@@ -1,19 +1,19 @@
-public class Event {
-    private String name;
-    private String detail;
-    private String type;
-    private String ownerName;
+class Event {
+    String name;
+    String detail;
+    String type;
+    String owner_name;
+    double cost_per_day;
 
-    public Event(String name, String detail, String type, String ownerName){
+    void set(String name, String detail, String type, String owner_name, double cost_per_day) {
         this.name = name;
         this.detail = detail;
-        this.ownerName = ownerName;
         this.type = type;
+        this.owner_name = owner_name;
+        this.cost_per_day = cost_per_day;
     }
-    public void display(){
-        System.out.println("Event Name:"+name);
-        System.out.println("Detail:"+detail);
-        System.out.println("Type:"+type);
-        System.out.println("Organiser Name:"+ownerName);
+        double calculateGST(double total_no_of_days){
+        return cost_per_day;
     }
+
 }

@@ -1,13 +1,13 @@
-public class Exhibition extends Event {
-    private int noOfStall;
+class Exhibition extends Event {
+    int no_of_stall;
 
-    public Exhibition(String name, String detail, String type, String ownerName,int noOfStall){
-        super(name, detail, type, ownerName);
-        this.noOfStall = noOfStall;
+    void set(String name, String detail, String type, String owner_name, double cost_per_day, int no_of_stall) {
+        super.set(name, detail, type, owner_name, cost_per_day);
+        this.no_of_stall = no_of_stall;
     }
-    
-    public void display(){
-        super.display();
-        System.out.println("Number of stalls:"+noOfStall);
+
+    @Override
+    double calculateGST(double total_no_of_days) {
+        return super.calculateGST(total_no_of_days) * total_no_of_days * 0.05;
     }
 }

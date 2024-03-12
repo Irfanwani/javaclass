@@ -1,29 +1,48 @@
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+import java.util.Date;
 
 public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter your choice:");
+        System.out.println("1.Exhibition event");
+        System.out.println("2.Stage event");
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Choose Event type");
-        System.out.println("1.Exhibition");
-        System.out.println("2.Stage Event");
-        int choice = Integer.parseInt(sc.nextLine());
+        int event_type = s.nextInt();
+        s.nextLine();
+        Exhibition EE = new Exhibition();
+        StageEvent SE = new StageEvent();
 
-        if (choice == 1) {
-            System.out.println("Enter the details in CSV format");
-            String exhibiinfo[] = sc.nextLine().split(",");
-            Exhibition eve = new Exhibition(exhibiinfo[0], exhibiinfo[1], exhibiinfo[2], exhibiinfo[3],
-                    Integer.parseInt(exhibiinfo[4]));
-            eve.display();
-
-        } else if (choice == 2) {
-            System.out.println("Enter the details in CSV format");
-            String eventinfo[] = sc.nextLine().split(",");
-            StageEvent ste = new StageEvent(eventinfo[0], eventinfo[1], eventinfo[2], eventinfo[3],
-                    Integer.parseInt(eventinfo[4]));
-            ste.display();
-        } else {
-            System.out.println("Invalid choice");
+        if (event_type == 1) {
+            System.out.println("Enter the details of exhibition:");
+            String[] value = s.nextLine().split(",");
+            EE.set(value[0], value[1], value[2], value[3], Double.parseDouble(value[4]), Integer.parseInt(value[5]));
         }
+        if (event_type == 2) {
+            System.out.println("Enter the details of stage event:");
+            String[] value = s.nextLine().split(",");
+            SE.set(value[0], value[1], value[2], value[3], Double.parseDouble(value[4]), Integer.parseInt(value[5]));
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println("Enter the starting date of the event:");
+        Date startDate = dateFormat.parse(s.nextLine());
+
+        System.out.println("Enter the ending date of the event:");
+        Date endDate = dateFormat.parse(s.nextLine());
+
+        long differenceInMilliseconds = endDate.getTime() - startDate.getTime();
+        int differenceInDays = (int) TimeUnit.DAYS.convert(differenceInMilliseconds, TimeUnit.MILLISECONDS);
+        double gst = 0;
+        if (event_type == 1) {
+            gst = EE.calculateGST(differenceInDays);
+        } else if (event_type == 2) {
+            gst = SE.calculateGST(differenceInDays);
+        }
+
+        System.out.println("The GST to be paid is Rs." + gst);
+
     }
 }
