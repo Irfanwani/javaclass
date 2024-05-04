@@ -1,3 +1,4 @@
 *.class
 Test.java
 *.csv
+*.txt
